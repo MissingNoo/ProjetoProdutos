@@ -1,7 +1,13 @@
-document.getElementById("cadastrar").addEventListener("click", Cadastrar, false);
+document
+  .getElementById("cadastrar")
+  .addEventListener("click", Cadastrar, false);
 document.getElementById("carregar").addEventListener("click", Carregar, false);
-document.getElementById("carregarcidade").addEventListener("click", CarregarCidade, false);
-document.getElementById("cadastrarcidade").addEventListener("click", CadastrarCidade, false);
+document
+  .getElementById("carregarcidade")
+  .addEventListener("click", CarregarCidade, false);
+document
+  .getElementById("cadastrarcidade")
+  .addEventListener("click", CadastrarCidade, false);
 document.getElementById("limpar").addEventListener("click", Limpar, false);
 
 window.onload = function () {
@@ -21,6 +27,7 @@ function closeNav() {
 }
 
 function Menu(cat) {
+  closeNav();
   document.getElementById("1").style.display = "none";
   document.getElementById("2").style.display = "none";
   document.getElementById("3").style.display = "none";
@@ -48,19 +55,19 @@ function Cadastrar() {
 }
 
 function CadastrarCidade() {
-    console.log("clicou");
-    let codigo = document.getElementById("Codigocidade").value;
-    let nome = document.getElementById("Nomecidade").value;
-    let estado = document.getElementById("Estado").value;
-    console.log(estado);
-    window.location.href =
-      "app/func/cadastrarCidade.php?codigo=" +
-      codigo +
-      "&nome=" +
-      nome +
-      "&estado=" +
-      estado;
-  }
+  console.log("clicou");
+  let codigo = document.getElementById("Codigocidade").value;
+  let nome = document.getElementById("Nomecidade").value;
+  let estado = document.getElementById("Estado").value;
+  console.log(estado);
+  window.location.href =
+    "app/func/cadastrarCidade.php?codigo=" +
+    codigo +
+    "&nome=" +
+    nome +
+    "&estado=" +
+    estado;
+}
 
 function Carregar() {
   let codigo = document.getElementById("Codigo").value;
@@ -68,9 +75,9 @@ function Carregar() {
 }
 
 function CarregarCidade() {
-    let codigo = document.getElementById("Codigocidade").value;
-    window.location.href = "index.php?page=3" + "&id=" + codigo;
-  }
+  let codigo = document.getElementById("Codigocidade").value;
+  window.location.href = "index.php?page=3" + "&id=" + codigo;
+}
 
 function Limpar() {
   window.location.href = "index.php?page=2";

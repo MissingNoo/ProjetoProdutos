@@ -44,14 +44,9 @@ if (isset($_SESSION["nome"]) == false) {
         <a href="javascript:void(0)" onclick="Menu('3')">Cadastro Cidades</a>
         <a href="javascript:void(0)" onclick="Menu('4')">Cadastro Produto</a>
     </div>
-
-    <!-- Use any element to open the sidenav -->
     <span style="font-size: 60px; float: left;" onclick="openNav()">&#9776;</span>
     <?php require_once 'app/_topo.php'; ?>
-    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
     <div id="main">
-
-
         <div id="1" style="display: none;">
             <?php require_once("app/inicio.php"); ?>
         </div>
