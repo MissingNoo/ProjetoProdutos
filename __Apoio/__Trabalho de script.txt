@@ -1,0 +1,18 @@
+Banco Dados
+
+Notícias
+	Título 	vc 200
+	Autor	vc 200
+	Data Publicação date
+	Imagem	vc 200
+	Texto	text
+	Categoria (Tecnologia, Dicas, Tendência, Curiosidade e Ciência)
+	Resumo	text
+	Fonte	vc 200
+
+
+Script
+	Cadastrar e Visualizar 
+
+2 Fase
+	Atualizar e Excluir

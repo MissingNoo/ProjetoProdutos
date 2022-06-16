@@ -1,0 +1,74 @@
+*{ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 300;
+}
+
+body{
+    background-color: #f3f3f3;
+}
+
+.container{
+    margin: 0 auto;
+    width: 90%;
+    background: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.row{
+    margin: 5px;
+}
+
+.row::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.row-flex{
+    display: flex;
+}
+
+.col{
+    width: 100%;
+    padding: 5px;
+}
+
+.col-1{width: 10%;float: left;}
+.col-2{width: 20%;float: left;}
+.col-3{width: 30%;float: left;}
+.col-4{width: 40%;float: left;}
+.col-5{width: 50%;float: left;}
+.col-6{width: 60%;float: left;}
+.col-7{width: 70%;float: left;}
+.col-8{width: 80%;float: left;}
+.col-9{width: 90%;float: left;}
+.col-10{width: 100%;float: left;}
+
+.espaco-v{height: 5px;}
+.espaco-h{width: 5px; }
+
+.botao{
+    background-color: red;
+}
+
+.centralizar-v{
+    display: flex;
+    align-items: center;
+}
+
+.centralizar-h{
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width:800px){
+    .centralizar-v{ display: block; }
+
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10{
+        width: 100%;
+    }
+}
