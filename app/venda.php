@@ -1,7 +1,24 @@
 <?php require_once("conexao/conexao.php");
 if ($_GET['page'] == 5) {
-    if (isset($_GET['idCliente'])) {
-        $idCliente = $_GET['idCliente'];
+    if (isset($_GET['CodigoPedido'])) {
+        $CodigoPedido = $_GET['CodigoPedido'];
+        try {
+            $comandoSQL = $conexao->prepare("SELECT * FROM Pedidos WHERE id=" . $CodigoPedido);
+            $comandoSQL->execute();
+            if ($comandoSQL->rowCount() > 0) {
+                $p = $comandoSQL->fetch();
+                $idCliente = $p[1];
+                $items = $p[2];
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    if (isset($idCliente) or isset($_GET['idCliente'])) {
+        if (!isset($idCliente)) {
+            $idCliente = $_GET['idCliente'];
+        }
         try {
             $comandoSQL = $conexao->prepare("SELECT Nome FROM Clientes WHERE id=" . $idCliente);
             $comandoSQL->execute();
@@ -12,9 +29,6 @@ if ($_GET['page'] == 5) {
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-    }
-    if (isset($_GET['CodigoPedido'])) {
-        $CodigoPedido = $_GET['CodigoPedido'];
     }
     if (isset($_GET['idProduto'])) {
         $idProduto = $_GET['idProduto'];
@@ -111,7 +125,7 @@ if ($_GET['page'] == 5) {
                 <tr>
                     <th><input type="number" name="CProduto" id="CProduto" value="<?php echo (isset($idProduto)) ? $idProduto : ''; ?>"></th>
                     <th><select name="lstProdutos" id="lstProdutos">
-                    <option></option>"
+                            <option></option>"
                             <!--  -->
                             <?php
                             try {
@@ -141,7 +155,7 @@ if ($_GET['page'] == 5) {
                     <th><input style="text-align: center;" type="number" name="valor" id="valor" disabled value="<?php echo (isset($valor)) ? $valor : ''; ?>"></th>
                     <th><input style="text-align: center;" type="number" name="qtd" id="qtd" value="0"></th>
                     <th><input style="text-align: center;" type="number" name="vTotal" id="vTotal" disabled></th>
-                    <th><button id="LimparPedido">Adicionar</button></th>
+                    <th><button id="AdicionarItem">Adicionar</button></th>
                 </tr>
                 <tr>
                     <th colspan="6" style="height: 3px; background-color: black;"></th>
@@ -156,7 +170,41 @@ if ($_GET['page'] == 5) {
                     <th style="background-color: grey;">X</th>
                 </tr>
                 <tr>
-                    <td></td>
+                    <?php
+                    $tt = 0;
+                    if (isset($items)) {
+                        $p1 = explode("|", $items);
+
+                        foreach ($p1 as $key) {
+                            $p2 = explode(":", $key);
+                            /*  */
+                            try {
+                                $comandoSQL = $conexao->prepare(
+                                    "SELECT * FROM Produtos Where id=" . $p2[0]
+                                );
+                                $comandoSQL->execute();
+                                if ($comandoSQL->rowCount() > 0) {
+                                    $desc = $comandoSQL->fetch();
+                                }
+                            } catch (PDOException $e) {
+                                echo $e->getMessage();
+                            }
+                            /*  */
+
+                            echo '<tr>
+                            <th><input style="text-align: center;" type="number" name="" id="" value="' . $desc[0] . '" disabled></th>
+                            <th><input style="text-align: center;" type="text" name="" id="" value="' . $desc[1] . '" disabled></th>
+                            <th><input style="text-align: center;" type="text" name="" id="" value="' . $desc[2] . 'R$" disabled></th>
+                            <th><input style="text-align: center;" type="text" name="" id="" value="' . $p2[1] . '" disabled></th>
+                            <th><input style="text-align: center;" type="text" name="" id="" value="' . $desc[2] * $p2[1] . 'R$" disabled></th>
+                            <th>X</th>
+                            </tr>';
+                            $tt=$tt+($desc[2] * $p2[1]);
+                        }
+                        echo '<th></th><th></th><th></th><th></th><th>' . $tt . 'R$</th>
+                        </tr>';
+                    }
+                    ?>
                 </tr>
             </thead>
         </table>

@@ -35,8 +35,14 @@ document.getElementById("ClienteList").addEventListener("change", SetClientID, f
 document.getElementById("lstProdutos").addEventListener("change", FindProductInfo, false);
 document.getElementById("qtd").addEventListener("change", ValorTotal, false);
 
-document.getElementById("CodigoCliente").addEventListener("focusout", FindClientName, false);
-document.getElementById("CodigoPedido").addEventListener("focusout", FindClientName, false);
+document.getElementById("CodigoCliente").addEventListener("change", FindClientName, false);
+document.getElementById("CarregarPedido").addEventListener("click", CarregarPedido, false);
+document.getElementById("AdicionarItem").addEventListener("click", AdicionarItem, false);
+document.getElementById("SalvarPedido").addEventListener("click", SalvarPedido, false);
+document.getElementById("LimparPedido").addEventListener("click", LimparPedido, false);
+document.getElementById("ExcluirPedido").addEventListener("click", ExcluirPedido, false);
+
+
 //#endregion
 
 //#endregion
@@ -124,6 +130,10 @@ function FindClientName() {
   let codigoPedido = document.getElementById("CodigoPedido").value;
   window.location.href = "index.php?page=5" + "&idCliente=" + codigoCliente + "&CodigoPedido=" + codigoPedido;
 }
+function CarregarPedido(){
+  let codigoPedido = document.getElementById("CodigoPedido").value;
+  window.location.href = "index.php?page=5" + "&CodigoPedido=" + codigoPedido;
+}
 function FindProductInfo(){
   let codigoCliente = document.getElementById("CodigoCliente").value;
   let codigoPedido = document.getElementById("CodigoPedido").value;
@@ -134,6 +144,26 @@ function ValorTotal(){
   valor = document.getElementById("valor").value;
   qtd =document.getElementById("qtd").value;
   document.getElementById("vTotal").value = valor * qtd;
+}
+function AdicionarItem(){
+  let codigoPedido = document.getElementById("CodigoPedido").value;
+  let item = document.getElementById("CProduto").value;
+  let qtd  = document.getElementById("qtd").value;
+  window.location.href ="app/func/addItemPedido.php?CodigoPedido=" + codigoPedido + "&item=" + item + ":" + qtd;
+}
+function SalvarPedido() {
+  let codigoPedido = document.getElementById("CodigoPedido").value;
+  let codigoCliente = document.getElementById("CodigoCliente").value;
+  let item = document.getElementById("CProduto").value;
+  let qtd  = document.getElementById("qtd").value;
+  window.location.href ="app/func/salvarPedido.php?CodigoPedido=" + codigoPedido + "&CodigoCliente=" + codigoCliente + "&item=" + item + ":" + qtd;;
+}
+function LimparPedido() {
+  window.location.href = "index.php?page=5";
+}
+function ExcluirPedido() {
+  let codigoPedido = document.getElementById("CodigoPedido").value;
+  window.location.href ="app/func/ExcluirPedido.php?CodigoPedido=" + codigoPedido;
 }
 //#endregion
 
@@ -158,7 +188,8 @@ function Menu(cat) {
   document.getElementById("2").style.display = "none";
   document.getElementById("3").style.display = "none";
   document.getElementById("4").style.display = "none";
-  //window.history.pushState(null, null, "index.php?page=" + cat);
+  document.getElementById("5").style.display = "none";
+  window.history.pushState(null, null, "index.php?page=" + cat);
   var x = document.getElementById(cat);
   x.style.display = "block";
 }

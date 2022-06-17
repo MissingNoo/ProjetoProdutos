@@ -40,8 +40,9 @@ if (isset($_SESSION["nome"]) == false) {
         <a style="color:red;" href='../login.php'>Deslogar</a>
     </div>
     <span style="font-size: 60px; float: left;" onclick="openNav()">&#9776;</span>
-    <?php require_once 'app/_topo.php'; ?>
+    
     <div id="main">
+    <?php require_once 'app/_topo.php'; ?>
         <div id="1" style="display: none;">
             <?php require_once("app/inicio.php"); ?>
         </div>
