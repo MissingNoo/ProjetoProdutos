@@ -4,29 +4,19 @@ if (isset($_GET['id']) & $_GET['page'] == 3) {
     try {
 
         $comandoSQL = $conexao->prepare("SELECT * FROM Cidades WHERE id=" . $id);
-        
+
         $comandoSQL->execute();
-        
+
         if ($comandoSQL->rowCount() > 0) {
             $rescidade = $comandoSQL->fetch();
             $nomecidade = $rescidade[1];
             $estado = $rescidade[2];
-            
         }
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 <style>
     table,
     th,
@@ -47,7 +37,9 @@ if (isset($_GET['id']) & $_GET['page'] == 3) {
 </style>
 
 <body>
-
+    <div class="centralizar-h">
+        <h1>Cadastro de Cidades</h1>
+    </div>
     <div class="centralizar-h">
         <table style="border: 1px solid;">
             <thead>
@@ -63,7 +55,7 @@ if (isset($_GET['id']) & $_GET['page'] == 3) {
                 <tr>
                     <th>Estado</th>
                     <th colspan="2"><select style="height: 100%;" name="Estado" id="Estado">
-                    <option></option>"
+                            <option></option>"
                             <!--  -->
                             <?php
                             try {
@@ -74,17 +66,15 @@ if (isset($_GET['id']) & $_GET['page'] == 3) {
                                 //executando o comando SELECT
                                 $comandoSQL->execute();
 
-                                
+
                                 if ($comandoSQL->rowCount() > 0) {
                                     while ($row = $comandoSQL->fetch()) {
-                                        
-                                        if ($estado === $row[0]){                                            
+
+                                        if ($estado === $row[0]) {
                                             echo "<option selected='selected' value=" . $row[0] . ">" . $row[0] . "</option>";
-                                        }
-                                        else {
+                                        } else {
                                             echo "<option value=" . $row[0] . ">" . $row[0] . "</option>";
                                         }
-                                        
                                     }
                                 }
                             } catch (PDOException $e) {

@@ -19,30 +19,25 @@ if (isset($_SESSION["nome"]) == false) {
     <link rel="stylesheet" href="./css/grids.css">
     <link rel="stylesheet" href="./css/formulario.css">
     <link rel="stylesheet" href="./css/estilo.css">
-    <style>
-        body::after {
-            content: "";
-            background: url('../img/logo.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            opacity: 0.4;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            position: absolute;
-            z-index: -1;
-        }
-    </style>
 </head>
 
 <body>
     <div id="mySidenav" class="sidenav">
+    <?php
+        if (isset($_SESSION["nome"]) == true) {
+            echo "<a>Usuario: {$_SESSION["nome"]} </a>";
+        } else {
+            echo "<a href='../login.php'>Logar</a>/<a href='url'>Registrar</a>";
+        }
+    ?>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        
         <a href="javascript:void(0)" onclick="Menu('1')">Inicio</a>
         <a href="javascript:void(0)" onclick="Menu('2')">Cadastro Clientes</a>
         <a href="javascript:void(0)" onclick="Menu('3')">Cadastro Cidades</a>
         <a href="javascript:void(0)" onclick="Menu('4')">Cadastro Produto</a>
+        <a href="javascript:void(0)" onclick="Menu('5')">Venda</a>
+        <a style="color:red;" href='../login.php'>Deslogar</a>
     </div>
     <span style="font-size: 60px; float: left;" onclick="openNav()">&#9776;</span>
     <?php require_once 'app/_topo.php'; ?>
@@ -58,6 +53,9 @@ if (isset($_SESSION["nome"]) == false) {
         </div>
         <div id="4" style="display: none;">
             <?php require_once("app/cadastroProdutos.php"); ?>
+        </div>
+        <div id="5" style="display: none;">
+            <?php require_once("app/venda.php"); ?>
         </div>
 
     </div>

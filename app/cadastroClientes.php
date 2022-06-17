@@ -15,14 +15,7 @@ if (isset($_GET['id']) & $_GET['page'] == 2) {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
 <style>
     table,
     th,
@@ -43,7 +36,9 @@ if (isset($_GET['id']) & $_GET['page'] == 2) {
 </style>
 
 <body>
-
+    <div class="centralizar-h">
+        <h1>Cadastro de Clientes</h1>
+    </div>
     <div class="centralizar-h">
         <table style="border: 1px solid;">
             <thead>

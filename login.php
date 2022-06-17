@@ -51,7 +51,7 @@ session_destroy();
     <div class="espaco-v" style="margin-bottom: 10vh;"></div>
     <!--abre um espaço entre os containers-->
 
-    <div class="container" style="background-color: #f3f3f3;">
+    <div class="container">
         <form action="./valida.php" method="post">
             <div class="row centralizar-h">
                 <div class="col-3">
@@ -71,14 +71,14 @@ session_destroy();
                         ?>
 
                         <div class="col-10">
-                            <label for="email">Usuário</label>
+                            <label style="color: black" for="email">Usuário</label>
                             <input type="email" name="email" id="email" placeholder="Email do usuário" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-10">
-                            <label for="senha">Senha</label>
+                            <label style="color: black" for="senha">Senha</label>
                             <input type="password" name="senha" id="senha" placeholder="Senha com 8 dígitos" minlength="3" required>
                         </div>
                     </div>
